@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>To my dearest Dr Walis,</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Quicksand:wght@500&display=swap');
@@ -20,93 +20,181 @@
     body {
       font-family: 'Quicksand', sans-serif;
       background: linear-gradient(to right, #ffdde1, #ee9ca7);
-      display: flex;
-      justify-content: center;
-      align-items: center;
       min-height: 100vh;
-      overflow-x: hidden;
+      overflow-y: auto;
       position: relative;
     }
 
-    .background-particles {
-      position: fixed;
+    .sparkles {
+      position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      z-index: 0;
       pointer-events: none;
-      background: url('https://www.transparenttextures.com/patterns/diamond-upholstery.png');
-      opacity: 0.08;
-      animation: shimmer 20s linear infinite;
+      background: url('https://www.transparenttextures.com/patterns/stardust.png') repeat;
+      opacity: 0.06;
+      animation: shimmer 15s linear infinite;
+      z-index: 0;
     }
 
     @keyframes shimmer {
-      0% { background-position: 0 0; }
-      100% { background-position: 100px 100px; }
+      from { background-position: 0 0; }
+      to { background-position: 100% 100%; }
     }
 
-    .falling-hearts {
+    .floating-hearts {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.floating-hearts span {
+  position: absolute;
+  display: block;
+  width: 20px;
+  height: 20px;
+  background: url('https://cdn-icons-png.flaticon.com/512/833/833472.png') no-repeat center center;
+  background-size: contain;
+  animation: float 8s linear infinite;
+  opacity: 0;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(100vh) scale(0.5);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-10vh) scale(1.2);
+    opacity: 0;
+  }
+}
+
+.floating-hearts span:nth-child(1) {
+  left: 10%;
+  animation-delay: 0s;
+}
+.floating-hearts span:nth-child(2) {
+  left: 25%;
+  animation-delay: 2s;
+}
+.floating-hearts span:nth-child(3) {
+  left: 50%;
+  animation-delay: 4s;
+}
+.floating-hearts span:nth-child(4) {
+  left: 75%;
+  animation-delay: 1s;
+}
+.floating-hearts span:nth-child(5) {
+  left: 90%;
+  animation-delay: 3s;
+}
+
+
+    .balloon {
+      position: absolute;
+      bottom: -100px;
+      width: 80px;
+      height: 100px;
+      background-color: #ffccff;
+      border-radius: 50% 50% 50% 50%;
+      text-align: center;
+      padding-top: 20px;
+      font-family: 'Dancing Script', cursive;
+      font-size: 1rem;
+      color: #fff;
+      animation: rise 10s infinite ease-in;
+    }
+
+    .balloon:nth-child(1) { left: 10%; animation-delay: 0s; }
+    .balloon:nth-child(2) { left: 30%; animation-delay: 2s; }
+    .balloon:nth-child(3) { left: 50%; animation-delay: 4s; }
+    .balloon:nth-child(4) { left: 70%; animation-delay: 6s; }
+    .balloon:nth-child(5) { left: 90%; animation-delay: 8s; }
+
+    @keyframes rise {
+      0% { transform: translateY(0); opacity: 0; }
+      50% { opacity: 1; }
+      100% { transform: translateY(-120vh); opacity: 0; }
+    }
+
+    .bear {
+      width: 120px;
+      height: 120px;
+      background: url('https://cdn.pixabay.com/photo/2020/10/31/10/01/bear-5702011_960_720.png') no-repeat center center;
+      background-size: contain;
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      z-index: 3;
+    }
+
+    .lock-screen {
       position: fixed;
-      top: 0;
-      left: 0;
+      top: 0; left: 0;
       width: 100%;
       height: 100%;
-      pointer-events: none;
-      overflow: hidden;
-      z-index: 1;
+      background: rgba(255, 223, 229, 0.96);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 10;
+      animation: fadeIn 2s;
     }
 
-    .falling-hearts span {
-      position: absolute;
-      display: block;
-      width: 20px;
-      height: 20px;
-      background: url('https://cdn-icons-png.flaticon.com/512/833/833472.png') no-repeat center center;
-      background-size: contain;
-      animation: fall 10s linear infinite;
-      opacity: 0.7;
+    .unlock-btn {
+      padding: 12px 24px;
+      font-size: 1.1rem;
+      background-color: #ff6f91;
+      color: white;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      margin-top: 20px;
+      animation: pulse 2s infinite;
     }
 
-    @keyframes fall {
-      0% {
-        transform: translateY(-100px) rotate(0deg);
-        opacity: 0;
-      }
-      30% {
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(110vh) rotate(360deg);
-        opacity: 0;
-      }
+    .unlock-text {
+      font-size: 1.3rem;
+      font-family: 'Dancing Script', cursive;
+      color: #444;
     }
 
-    .falling-hearts span:nth-child(1) { left: 10%; animation-delay: 0s; }
-    .falling-hearts span:nth-child(2) { left: 25%; animation-delay: 2s; }
-    .falling-hearts span:nth-child(3) { left: 50%; animation-delay: 4s; }
-    .falling-hearts span:nth-child(4) { left: 75%; animation-delay: 1.5s; }
-    .falling-hearts span:nth-child(5) { left: 90%; animation-delay: 3s; }
+    @keyframes pulse {
+      0% { transform: scale(1); box-shadow: 0 0 10px #ffc1cc; }
+      50% { transform: scale(1.05); box-shadow: 0 0 20px #ff99c8; }
+      100% { transform: scale(1); box-shadow: 0 0 10px #ffc1cc; }
+    }
 
     .card {
       background-color: white;
       padding: 2rem;
       max-width: 600px;
+      margin: 100px auto;
       border-radius: 20px;
-      text-align: center;
-      position: relative;
-      z-index: 2;
       box-shadow: 0 0 25px rgba(0, 0, 0, 0.2);
-      animation: glow 4s ease-in-out infinite alternate;
+      text-align: center;
+      opacity: 0;
+      transform: scale(0.8);
+      transition: all 1.2s ease;
+      z-index: 5;
+      position: relative;
     }
 
-    @keyframes glow {
-      0% {
-        box-shadow: 0 0 15px #ffcdd2;
-      }
-      100% {
-        box-shadow: 0 0 30px #ff8a80;
-      }
+    .card.visible {
+      opacity: 1;
+      transform: scale(1);
     }
 
     h1 {
@@ -140,46 +228,77 @@
       font-size: 1rem;
       transition: 0.3s ease;
       text-decoration: none;
-      display: inline-block;
+      box-shadow: 0 0 15px #ffc1cc;
+      animation: pulse 2s infinite;
     }
 
     .button:hover {
       background-color: #ff4ed3;
       transform: scale(1.05);
     }
+
   </style>
 </head>
 <body>
-  <div class="background-particles"></div>
-  <div class="falling-hearts">
-    <span></span><span></span><span></span><span></span><span></span>
+
+  <div class="sparkles"></div>
+
+<div class="floating-hearts">
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+</div>
+
+
+  <div class="floating-balloons">
+    <div class="balloon">Miss<br>you</div>
+    <div class="balloon">I<br>care</div>
+    <div class="balloon">I'm<br>sorry</div>
+    <div class="balloon">Forgive<br>me</div>
+    <div class="balloon">Love<br>you</div>
+    <div class="balloon">Bring<br>back<br>our<br>streaks!</div>
   </div>
-  <div class="card">
-    <h1>죄송합니다</h1>
-    <p>
-      Life pulled me in ways I never expected, and I lost grip of the things that mattered.  
-      You have always been more than just a friend. You were (still are honestly) quite very special and I'm sorry I haven't made you feel that way.
-      I should have cherished you, but I'm working on expressing myself better I swear.
-    </p>
-    <p>
-      I disappeared. I failed to explain. And for that, I'm really, really sorry.
-      It wasn’t about you — it was about me not knowing how to handle everything, but those are excuses and I acknowledge my wrongs.
-    </p>
-    <p>
-      Took me a long while to make this, but here it is. I have delayed this for too long but I hope you see the effort that went into this and I hope it screams how much I love and care about you, and how much I have missed you. I’d love to rebuild what we had —  
-      even if it takes time, even if it’s slow. 
-    </p>
-    <p>
-      I can't promise to change at once, bc I know it will sound fake asl. But I promise I'll be better. I'll try my very best to be a proper friend. And next time I feel mentally overwhelmed I promise to ask for your permission before going MIA (I'm not even joking)
-    </p>
-    <p>
-      All in all sha, I mount your cabal like mad, no vex for me, ibo mi, make I no lose home and away.
-    </p>
-    <p class="signature">
-      With love,<br />
-      Husnah 💛
-    </p>
-    <a class="button" href="https://www.instagram.com/waleederh.m/" target="_blank">Reach out to me? 🫠🫠</a>
+
+  <div class="bear"></div>
+
+  <div class="lock-screen" id="lockScreen">
+    <div class="unlock-text">Unlock to read the letter 💌</div>
+    <button class="unlock-btn" onclick="unlockLetter()">Unlock</button>
   </div>
+
+  <div class="card" id="letterCard">
+    <h1>To My Dear Dr. Walis,</h1>
+    <p>
+      Life pulled me in ways I didn't expect, and I lost grip of the things that mattered.  
+      You have always been more than just a friend. You were (still are, honestly) quite very special to me and I'm sorry I haven't made you feel that way.
+    </p>
+    <p>
+      I disappeared with no explanation. And I'm really, really sorry. It wasn’t about you — it was about me not knowing how to handle everything.
+      But these are my excuses and I take full responsibility for my wrongs.
+    </p>
+    <p>
+      Took me a long while to make this. I hope it screams how much I love and care about you, and how much I’ve missed you.
+      I’d love to rebuild what we had — even if it takes time, even if it’s slow.
+    </p>
+    <p>
+      I can't promise to change overnight. But I promise I’ll try to be a better friend. And next time I feel overwhelmed, I’ll ask for your permission before going MIA.
+    </p>
+    <p>
+      All in all sha, I mount your cabal like mad, no vex for me, ibo mi, make I no lose home and away😔
+    </p>
+    <p class="signature">With love,<br />Husnah 💛</p>
+    <a class="button" href="https://www.instagram.com/waleederh.m/" target="_blank">Reach out to me? 🫠</a>
+  </div>
+
+  <script>
+    function unlockLetter() {
+      document.getElementById('lockScreen').style.display = 'none';
+      const card = document.getElementById('letterCard');
+      card.classList.add('visible');
+      card.scrollIntoView({ behavior: 'smooth' });
+    }
+  </script>
 </body>
 </html>
